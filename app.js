@@ -56,8 +56,5 @@ let game = () => {
 }
 
 if (document.readyState) {
-  console.log("Please press the 'Play' button the begin!");
-  document.getElementById("play").onclick = function () {
-    game();
-  };
+  console.log("Please press the 'Play' button to begin!");
 }
