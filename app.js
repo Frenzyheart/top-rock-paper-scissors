@@ -22,39 +22,58 @@ let playRound = (playerSelection, computerSelection) => {
   }
 }
 
-let game = () => {
-  console.log("Welcome to Rock, Paper, Scissors!");
-  console.log("\nYou will play up to 5 rounds against the CPU");
-  console.log("to determine the winner!\n");
+let game = (results) => {
 
-  let playerScore = 0;
-  let computerScore = 0;
-
-  while (playerScore < 3 && computerScore < 3) {
-    let input = prompt("Please type in 'rock', 'paper', or 'scissors':");
-
-    let winner = playRound(input, computerPlay());
-
-    if (winner.startsWith("You win")) {
-      playerScore++;
-    } else if (winner.startsWith("You lose")) {
-      computerScore++;
-    }
-
-    console.log(winner);
-    console.log("Current score:");
-    console.log("Player     CPU");
-    console.log("-------|------")
-    console.log(playerScore + "      |     " + computerScore);
+  const playerScoreNode = document.querySelector('#playerScore');
+  const computerScoreNode = document.querySelector('#computerScore');
+  const roundMessage = document.querySelector('#roundMessage');
+  const winMessage = document.querySelector('#winMessage');
+  
+  let playerScore = playerScoreNode.textContent;
+  let computerScore = computerScoreNode.textContent;
+  
+  if (results.startsWith("You win")) {
+    playerScore++ ;
+  } else if (results.startsWith("You lose")) {
+    computerScore++;
   }
-
+  
+  roundMessage.textContent = results;
+  
   if (playerScore === 3) {
-    console.log("You won the game!");
-  } else {
-    console.log("You lost! Sorry, better luck next time!");
+    winMessage.textContent = "You won the game!";
+  } else if (computerScore === 3) {
+    winMessage.textContent = "You lost! Sorry, better luck next time!";
   }
 }
 
 if (document.readyState) {
-  console.log("Please press the 'Play' button to begin!");
+  const btnRock = document.querySelector('#rock');
+  const btnPaper = document.querySelector('#paper');
+  const btnScissors = document.querySelector('#scissors');
+  const btnReset = document.querySelector('#reset');
+  
+  btnRock.addEventListener('click', () => {
+    game(playRound("rock", computerPlay()));
+  });
+  
+  btnPaper.addEventListener('click', () => {
+    game(playRound("paper", computerPlay()));
+  });
+  
+  btnScissors.addEventListener('click', () => {
+    game(playRound("scissors", computerPlay()));
+  });
+  
+  btnReset.addEventListener('click', () => {
+    const playerScore = document.querySelector('#playerScore');
+    const computerScore = document.querySelector('#computerScore');
+    const roundMessage = document.querySelector('#roundMessage');
+    const winMessage = document.querySelector('#winMessage');
+    
+    playerScore.textContent = 0;
+    computerScore.textContent = 0;
+    roundMessage.textContent = '';
+    winMessage.textContent = '';
+  });
 }
