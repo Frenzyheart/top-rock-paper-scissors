@@ -3,9 +3,21 @@
   <head>
     <title>Rock - Paper - Scissors</title>
     <script src="app.js"></script>
+    <style>
+      #scoreboard {
+        font-family: monospace;
+      }
+    </style>
   </head>
   <body>
-    <h1>Check the JavaScript console!</h1>
-    <button onclick="game()">Play</button>
+    <h1>Welcome to Rock - Paper - Scissors!</h1>
+    <div id="scoreboard">
+      <h1>Player | CPU</h1>
+      <p id="scoreDisplay"></p>
+    </div>
+    <p id="message"></p>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
   </body>
 </html>
