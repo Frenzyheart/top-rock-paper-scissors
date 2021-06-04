@@ -29,13 +29,15 @@ let game = (results) => {
   const roundMessage = document.querySelector('#roundMessage');
   const winMessage = document.querySelector('#winMessage');
   
-  let playerScore = playerScoreNode.textContent;
-  let computerScore = computerScoreNode.textContent;
+  let playerScore = parseInt(playerScoreNode.textContent);
+  let computerScore = parseInt(computerScoreNode.textContent);
   
   if (results.startsWith("You win")) {
-    playerScore++ ;
+    playerScore++;
+    playerScoreNode.textContent = playerScore;
   } else if (results.startsWith("You lose")) {
     computerScore++;
+    computerScoreNode.textContent = computerScore;
   }
   
   roundMessage.textContent = results;
@@ -47,7 +49,7 @@ let game = (results) => {
   }
 }
 
-if (document.readyState === "complete") {
+document.addEventListener("DOMContentLoaded", function(event) {
   const btnRock = document.querySelector('#rock');
   const btnPaper = document.querySelector('#paper');
   const btnScissors = document.querySelector('#scissors');
@@ -75,5 +77,5 @@ if (document.readyState === "complete") {
     computerScore.textContent = 0;
     roundMessage.textContent = '';
     winMessage.textContent = '';
-  });
-}
+  });  
+});
